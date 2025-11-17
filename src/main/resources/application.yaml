@@ -1,0 +1,43 @@
+server:
+  port: ${PORT:8081} # Corre en el 8081 para no chocar con otros servicios
+
+spring:
+  application:
+    name: client-ms
+  sql:
+    init:
+      mode: always # Fuerza la ejecución del script SQL al inicio
+      schema-locations: classpath:schema.sql # La ruta del archivo
+
+  # Configuración de Base de Datos R2DBC (Reactiva)
+  r2dbc:
+    # Sintaxis: r2dbc:mysql://host:port/database
+    url: r2dbc:mysql://${DB_HOST:localhost}:${DB_PORT:3306}/${DB_NAME:cliente}
+    username: ${DB_USER:root}
+    password: ${DB_PASSWORD:1234}
+    pool:
+      initial-size: 5
+      max-size: 20
+
+  # Configuración de Seguridad (OAuth2 Resource Server)
+  # Nota: Descomenta esto cuando tengas tu servidor de identidad (Keycloak/Okta) listo.
+  # security:
+  #   oauth2:
+  #     resourceserver:
+  #       jwt:
+  #         issuer-uri: ${OAUTH_ISSUER_URI:http://localhost:8080/realms/bank-realm}
+
+# Configuración de OpenAPI (Swagger)
+springdoc:
+  api-docs:
+    path: /api-docs
+  swagger-ui:
+    path: /swagger-ui.html
+    operations-sorter: method # Ordena los métodos (GET, POST...)
+
+# Configuración de Logs
+logging:
+  level:
+    root: INFO
+    com.bank.clientms: DEBUG # Veremos nuestros logs detallados
+    org.springframework.r2dbc: INFO # Cambiar a DEBUG si quieres ver las queries SQL
