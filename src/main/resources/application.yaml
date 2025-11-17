@@ -14,7 +14,7 @@ spring:
     # Sintaxis: r2dbc:mysql://host:port/database
     url: r2dbc:mysql://${DB_HOST:localhost}:${DB_PORT:3306}/${DB_NAME:cliente}
     username: ${DB_USER:root}
-    password: ${DB_PASSWORD:1234}
+    password: ${DB_PASSWORD:}
     pool:
       initial-size: 5
       max-size: 20

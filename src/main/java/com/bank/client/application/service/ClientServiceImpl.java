@@ -29,7 +29,7 @@ public class ClientServiceImpl implements ClientUseCase {
         // 2. Llamada al puerto de salida (Repositorio)
         return clientRepositoryPort.findByUniqueCode(uniqueCode)
                 // 3. Si lo encuentra, hacemos un log
-                .doOnNext(client -> log.info("Cliente encontrado: {} {}", client.getFirstName(), client.getLastName()))
+                .doOnNext(client -> log.info("Cliente encontrado: {} {}", client))
                 // 4. Si NO lo encuentra, lanzamos nuestra excepción de dominio
                 .switchIfEmpty(Mono.error(ClientNotFoundException.withUniqueCode(uniqueCode)));
     }

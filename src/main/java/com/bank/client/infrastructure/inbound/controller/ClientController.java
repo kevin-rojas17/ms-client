@@ -24,13 +24,12 @@ public class ClientController {
 
     @GetMapping("/{uniqueCode}")
     @Operation(summary = "Get client by unique code")
-    public Mono<ResponseEntity<ClientResponseDTO>> getClient(@PathVariable String uniqueCode) {
+    public Mono<ClientResponseDTO> getClient(@PathVariable String uniqueCode) {
 
         return clientUseCase.getClientByUniqueCode(uniqueCode)
                 // Convertimos Modelo -> DTO
-                .map(mapper::toResponse)
+                .map(mapper::toResponse);
                 // Envolvemos en ResponseEntity OK (200)
-                .map(ResponseEntity::ok);
 
         // Nota: El manejo de errores (404 Not Found) se suele hacer
         // con un @ControllerAdvice global, capturando la excepcion

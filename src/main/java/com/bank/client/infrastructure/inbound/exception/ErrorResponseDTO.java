@@ -14,5 +14,6 @@ import java.time.LocalDateTime;
 public class ErrorResponseDTO {
     private String code;      // Ej: "CLIENT_NOT_FOUND"
     private String message;   // Ej: "Client not found with uniqueCode: 123"
+    private String traceId;
     private LocalDateTime timestamp;
 }
