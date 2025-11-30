@@ -7,6 +7,7 @@ public class ClientNotFoundException extends RuntimeException {
     /**
      * Método helper para crear la excepción de forma estándar.
      */
+    // prueba para git v1
     public static ClientNotFoundException withUniqueCode(String uniqueCode) {
         return new ClientNotFoundException("Client not found with uniqueCode: " + uniqueCode);
     }
